@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
 	def index
-		render :nothing => true
+		@products = ["productA", "productB"]
 	end
 end
