@@ -33,4 +33,18 @@ describe PaymentsController, :type => :controller do
 			end
 		end
 	end
+
+	describe 'POST payment of order' do
+		context 'when order has not pay' do
+			before {
+				expect {
+					post :create, {:user_id => 1, :order_id => 2}
+					}.to change { Payment.count }
+			}
+
+			it 'have http status 201' do
+				expect(response).to have_http_status(201)
+			end
+		end
+	end
 end

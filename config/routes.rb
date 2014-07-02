@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resource :payment do
         member do
           get :show
+          post :create
         end
       end
     end
