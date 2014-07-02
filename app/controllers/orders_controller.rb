@@ -7,16 +7,16 @@ class OrdersController < ApplicationController
 
 	def show
 		@order = @user.orders.where(id: params[:id].to_i).first
-		render :nothing => true, :status => :not_found unless @order
+		render nothing: true, status: :not_found unless @order
 	end
 
 	def create
 		begin
 			@order = @user.orders.build(product: Product.find(order_params[:product_id].to_i))
 			@order.save
-			render :nothing => true, :status => :created, :location => user_order_url(@user, @order)
+			render nothing: true, status: :created, location: user_order_url(@user, @order)
 		rescue ActiveRecord::RecordNotFound
-			render :nothing => true, :status => :bad_request
+			render nothing: true, status: :bad_request
 		end		
 	end
 
