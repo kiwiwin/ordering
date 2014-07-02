@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
 	def index
-		render :nothing => true
+		@orders = User.find(params[:user_id].to_i).orders
 	end
 end
