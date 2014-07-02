@@ -18,6 +18,7 @@ describe OrdersController, :type => :controller do
 
 			expect(orders[0]['user_uri']).to end_with("/users/1")
 			expect(orders[0]['product_uri']).to end_with("/products/1")
+			expect(orders[0]['price']).to eq("10.12")
 		end
 	end
 end
