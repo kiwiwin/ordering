@@ -11,11 +11,17 @@ class OrdersController < ApplicationController
 	end
 
 	def create
+		@order = @user.orders.build(product_id: order_params[:product_id].to_i)
+		@order.save
 		render :nothing => true, :status => :created
 	end
 
 	protected
 		def set_user
 			@user = User.find(params[:user_id].to_i)
+		end
+
+		def order_params
+			params[:order]
 		end
 end

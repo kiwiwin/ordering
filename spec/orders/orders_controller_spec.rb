@@ -55,7 +55,9 @@ describe OrdersController, :type => :controller do
 	describe 'POST an order' do
 		context 'order is valid' do
 			before {
-				post :create, {:user_id => 1, :order => {:product_id => 2}}
+				expect {
+					post :create, {:user_id => 1, :order => {:product_id => 2}}
+					}.to change { Order.count }
 			}
 
 			it 'have http status 201' do
