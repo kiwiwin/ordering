@@ -1,9 +1,16 @@
 class OrdersController < ApplicationController
+	before_action :set_user
+
 	def index
-		@orders = User.find(params[:user_id].to_i).orders
+		@orders = @user.orders
 	end
 
 	def show
-		@order = User.find(params[:user_id].to_i).orders.where(id: params[:id].to_i).first
+		@order = @user.orders.where(id: params[:id].to_i).first
 	end
+
+	protected
+		def set_user
+			@user = User.find(params[:user_id].to_i)
+		end
 end
