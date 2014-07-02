@@ -18,6 +18,7 @@ describe PaymentsController, :type => :controller do
 			payment = JSON.parse(response.body)
 			
 			expect(payment['uri']).to end_with('/users/1/orders/1/payment')
+			expect(payment['amount']).to eq("10.12")
 		end
 	end
 end
