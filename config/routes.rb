@@ -19,6 +19,12 @@ Rails.application.routes.draw do
       member do
         get :show
       end
+
+      resource :payment do
+        member do
+          get :show
+        end
+      end
     end
   end
 
