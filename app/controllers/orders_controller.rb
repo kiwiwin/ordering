@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
 
 	def show
 		@order = @user.orders.where(id: params[:id].to_i).first
+		render :nothing => true, :status => :not_found unless @order
 	end
 
 	protected

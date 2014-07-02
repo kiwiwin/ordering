@@ -23,20 +23,32 @@ describe OrdersController, :type => :controller do
 	end
 
 	describe 'GET an order of user' do
-		before {
-			get :show, {:user_id => 1, :id => 1, :format => :json}
-		}
+		context 'order is exist' do
+			before {
+				get :show, {:user_id => 1, :id => 1, :format => :json}
+			}
 
-		it 'have http status 200' do
-			expect(response).to have_http_status(200)
+			it 'have http status 200' do
+				expect(response).to have_http_status(200)
+			end
+
+			it 'is JSON formatted' do
+				order = JSON.parse(response.body)
+
+				expect(order['user_uri']).to end_with("/users/1")
+				expect(order['product_uri']).to end_with("/products/1")
+				expect(order['price']).to eq("10.12")
+			end
 		end
 
-		it 'is JSON formatted' do
-			order = JSON.parse(response.body)
+		context 'order is not exist' do
+			before {
+				get :show, {:user_id => 1, :id => 10000, :format => :json}
+			}
 
-			expect(order['user_uri']).to end_with("/users/1")
-			expect(order['product_uri']).to end_with("/products/1")
-			expect(order['price']).to eq("10.12")
+			it 'have http status 404' do
+				expect(response).to have_http_status(404)
+			end
 		end
 	end
 end
