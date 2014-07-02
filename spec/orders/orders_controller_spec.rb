@@ -5,7 +5,7 @@ describe OrdersController, :type => :controller do
 
 	describe 'GET orders of user' do
 		before {
-			get :index, {:user_id => 1, :format => :json}
+			get :index, user_id: 1, format: :json
 		}
 
 		it 'have http status 200' do
@@ -25,7 +25,7 @@ describe OrdersController, :type => :controller do
 	describe 'GET an order of user' do
 		context 'order is exist' do
 			before {
-				get :show, {:user_id => 1, :id => 1, :format => :json}
+				get :show, user_id: 1, id: 1, format: :json
 			}
 
 			it 'have http status 200' do
@@ -45,7 +45,7 @@ describe OrdersController, :type => :controller do
 
 		context 'order is not exist' do
 			before {
-				get :show, {:user_id => 1, :id => 10000, :format => :json}
+				get :show, user_id: 1, id: 10000, format: :json
 			}
 
 			it 'have http status 404' do
