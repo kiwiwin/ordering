@@ -34,21 +34,33 @@ describe ProductsController, :type => :controller do
    end
 
    describe 'GET one product' do
-   	before {
-   		get :show, {:id => 1, :format => :json}
-   	}
+   	context 'when product is exist' do
+   	   before {
+   		   get :show, {:id => 1, :format => :json}
+   	   }
 
-   	it 'have http status 200' do
-   		expect(response).to have_http_status(200)
-   	end
+   	   it 'have http status 200' do
+   		   expect(response).to have_http_status(200)
+   	   end
 
-   	it 'is JSON formatted' do
-   		product = JSON.parse(response.body)
+   	   it 'is JSON formatted' do
+   		   product = JSON.parse(response.body)
 
-   		expect(product['id']).to eq(1)
-   		expect(product['name']).to eq('apple juice')
-   		expect(product['description']).to eq('good')   	
-   		expect(product['uri']).to end_with('/products/1')
-   	end
+   		   expect(product['id']).to eq(1)
+   		   expect(product['name']).to eq('apple juice')
+   		   expect(product['description']).to eq('good')   	
+   		   expect(product['uri']).to end_with('/products/1')
+   	   end
+      end
+
+      context 'when product is not exist' do
+      	before {
+      		get :show, {:id => 10000, :format => :json}
+      	}
+
+      	it 'have http status 404' do
+      		expect(response).to have_http_status(404)
+      	end
+      end
    end
 end
