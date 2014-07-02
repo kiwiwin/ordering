@@ -4,6 +4,6 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		render :nothing => true
+		@product = Product.find(params[:id].to_i)
 	end
 end

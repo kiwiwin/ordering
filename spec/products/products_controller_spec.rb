@@ -35,11 +35,20 @@ describe ProductsController, :type => :controller do
 
    describe 'GET one product' do
    	before {
-   		get :show, {:format => :json, :id => 1}
+   		get :show, {:id => 1, :format => :json}
    	}
 
    	it 'have http status 200' do
    		expect(response).to have_http_status(200)
+   	end
+
+   	it 'is JSON formatted' do
+   		product = JSON.parse(response.body)
+
+   		expect(product['id']).to eq(1)
+   		expect(product['name']).to eq('apple juice')
+   		expect(product['description']).to eq('good')   	
+   		expect(product['uri']).to end_with('/products/1')
    	end
    end
 end
