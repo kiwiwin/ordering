@@ -3,6 +3,8 @@ require 'rails_helper'
 describe ProductsController, :type => :controller do
    render_views
 
+   fixtures :products
+
    describe 'GET products' do
       before {
          get :index, {:format => :json}

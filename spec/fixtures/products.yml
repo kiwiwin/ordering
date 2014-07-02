@@ -1,0 +1,9 @@
+apple_juice:
+   name: apple juice
+   description: good
+   price: 10.12
+
+banana_juice:
+   name: bananan juice
+   description: just so so
+   price: 4.09
