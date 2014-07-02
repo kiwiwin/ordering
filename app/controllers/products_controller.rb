@@ -11,6 +11,6 @@ class ProductsController < ApplicationController
 
 	protected
 		def product_not_found
-			render :nothing => true, :status => :not_found
+			render nothing: true, status: :not_found
 		end
 end
