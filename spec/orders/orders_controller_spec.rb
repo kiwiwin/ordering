@@ -35,6 +35,8 @@ describe OrdersController, :type => :controller do
 			it 'is JSON formatted' do
 				order = JSON.parse(response.body)
 
+				expect(order['id']).to eq(1)
+				expect(order['uri']).to end_with("/users/1/orders/1")
 				expect(order['user_uri']).to end_with("/users/1")
 				expect(order['product_uri']).to end_with("/products/1")
 				expect(order['price']).to eq("10.12")
