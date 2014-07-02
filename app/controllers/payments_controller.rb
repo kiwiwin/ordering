@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
 		if !@order.payment
 			@payment = @order.build_payment()
 			@payment.save
-			render :nothing => true, :status => :created
+			render :nothing => true, :status => :created, :location => user_order_payment_url(@user, @order)
 		else
 			render :nothing => true, :status => :bad_request
 		end
