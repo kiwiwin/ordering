@@ -7,7 +7,7 @@ describe ProductsController, :type => :controller do
 
    describe 'GET products' do
       before {
-         get :index, {:format => :json}
+         get :index, format: :json
       }
 
       it 'have http status 200' do
@@ -36,7 +36,7 @@ describe ProductsController, :type => :controller do
    describe 'GET one product' do
    	context 'when product is exist' do
    	   before {
-   		   get :show, {:id => 1, :format => :json}
+   		   get :show, id: 1, format: :json
    	   }
 
    	   it 'have http status 200' do
@@ -55,7 +55,7 @@ describe ProductsController, :type => :controller do
 
       context 'when product is not exist' do
       	before {
-      		get :show, {:id => 10000, :format => :json}
+      		get :show, id: 10000, format: :json
       	}
 
       	it 'have http status 404' do
