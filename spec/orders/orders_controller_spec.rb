@@ -51,4 +51,16 @@ describe OrdersController, :type => :controller do
 			end
 		end
 	end
+
+	describe 'POST an order' do
+		context 'order is valid' do
+			before {
+				post :create, {:user_id => 1, :order => {:product_id => 2}}
+			}
+
+			it 'have http status 201' do
+				expect(response).to have_http_status(201)
+			end
+		end
+	end
 end

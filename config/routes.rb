@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :orders do
       collection do
         get :index
+        post :create
       end
 
       member do

@@ -10,6 +10,10 @@ class OrdersController < ApplicationController
 		render :nothing => true, :status => :not_found unless @order
 	end
 
+	def create
+		render :nothing => true, :status => :created
+	end
+
 	protected
 		def set_user
 			@user = User.find(params[:user_id].to_i)
