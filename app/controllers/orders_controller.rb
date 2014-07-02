@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
 	def create
 		@order = @user.orders.build(product_id: order_params[:product_id].to_i)
 		@order.save
-		render :nothing => true, :status => :created
+		render :nothing => true, :status => :created, :location => user_order_url(@user, @order)
 	end
 
 	protected

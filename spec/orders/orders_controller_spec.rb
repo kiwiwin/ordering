@@ -63,6 +63,10 @@ describe OrdersController, :type => :controller do
 			it 'have http status 201' do
 				expect(response).to have_http_status(201)
 			end
+
+			it 'have location' do
+				expect(response.location).to match(/\/users\/1\/orders\/\d+/)
+			end
 		end
 	end
 end
