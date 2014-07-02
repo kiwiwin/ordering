@@ -46,5 +46,17 @@ describe PaymentsController, :type => :controller do
 				expect(response).to have_http_status(201)
 			end
 		end
+
+		context 'when order has pay' do
+			before {
+				expect {
+					post :create, {:user_id => 1, :order_id => 1}
+					}.not_to change { Payment.count }
+			}
+
+			it 'have http status 400' do
+				expect(response).to have_http_status(400)
+			end
+		end
 	end
 end

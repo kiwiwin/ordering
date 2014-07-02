@@ -7,9 +7,13 @@ class PaymentsController < ApplicationController
 	end
 
 	def create
-		@payment = @order.build_payment()
-		@payment.save
-		render :nothing => true, :status => :created
+		if !@order.payment
+			@payment = @order.build_payment()
+			@payment.save
+			render :nothing => true, :status => :created
+		else
+			render :nothing => true, :status => :bad_request
+		end
 	end
 
 	protected
