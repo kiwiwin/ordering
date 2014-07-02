@@ -8,7 +8,7 @@ describe PaymentsController, :type => :controller do
 	describe 'GET payment of order' do
 		context 'when order already pay' do
 			before {
-				get :show, {:user_id => 1, :order_id => 1, :format => :json}
+				get :show, user_id: 1, order_id: 1, format: :json
 			}
 
 			it 'have http status 200' do
@@ -25,7 +25,7 @@ describe PaymentsController, :type => :controller do
 
 		context 'when order has not pay' do
 			before {
-				get :show, {:user_id => 1, :order_id => 2, :format => :json}
+				get :show, user_id: 1, order_id: 2, format: :json
 			}
 
 			it 'have http status 404' do
@@ -38,7 +38,7 @@ describe PaymentsController, :type => :controller do
 		context 'when order has not pay' do
 			before {
 				expect {
-					post :create, {:user_id => 1, :order_id => 2}
+					post :create, user_id: 1, order_id: 2
 					}.to change { Payment.count }
 			}
 
@@ -54,7 +54,7 @@ describe PaymentsController, :type => :controller do
 		context 'when order has pay' do
 			before {
 				expect {
-					post :create, {:user_id => 1, :order_id => 1}
+					post :create, user_id: 1, order_id: 1
 					}.not_to change { Payment.count }
 			}
 
