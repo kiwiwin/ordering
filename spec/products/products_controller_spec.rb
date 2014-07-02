@@ -32,4 +32,14 @@ describe ProductsController, :type => :controller do
          expect(products[1]['uri']).to end_with('/products/2')   	
       end
    end
+
+   describe 'GET one product' do
+   	before {
+   		get :show, {:format => :json, :id => 1}
+   	}
+
+   	it 'have http status 200' do
+   		expect(response).to have_http_status(200)
+   	end
+   end
 end
