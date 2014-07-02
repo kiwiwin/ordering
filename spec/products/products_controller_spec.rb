@@ -16,7 +16,11 @@ describe ProductsController, :type => :controller do
 
       it 'is JSON formatted' do
       	products = JSON.parse(response.body)
+
       	expect(products.size).to eq(2)
+
+      	expect(products[0]['name']).to eq('apple juice')
+      	expect(products[1]['name']).to eq('banana juice')
       end
    end
 end

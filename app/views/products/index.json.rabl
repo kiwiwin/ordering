@@ -1,1 +1,3 @@
 collection @products
+
+attributes :name
