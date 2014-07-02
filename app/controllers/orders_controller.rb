@@ -4,6 +4,6 @@ class OrdersController < ApplicationController
 	end
 
 	def show
-		render :nothing => true
+		@order = User.find(params[:user_id].to_i).orders.where(id: params[:id].to_i).first
 	end
 end

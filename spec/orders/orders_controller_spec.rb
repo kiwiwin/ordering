@@ -24,11 +24,19 @@ describe OrdersController, :type => :controller do
 
 	describe 'GET an order of user' do
 		before {
-			get :show, {:user_id => 1, :id => 1}
+			get :show, {:user_id => 1, :id => 1, :format => :json}
 		}
 
 		it 'have http status 200' do
 			expect(response).to have_http_status(200)
+		end
+
+		it 'is JSON formatted' do
+			order = JSON.parse(response.body)
+
+			expect(order['user_uri']).to end_with("/users/1")
+			expect(order['product_uri']).to end_with("/products/1")
+			expect(order['price']).to eq("10.12")
 		end
 	end
 end
