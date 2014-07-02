@@ -11,9 +11,13 @@ class OrdersController < ApplicationController
 	end
 
 	def create
-		@order = @user.orders.build(product_id: order_params[:product_id].to_i)
-		@order.save
-		render :nothing => true, :status => :created, :location => user_order_url(@user, @order)
+		begin
+			@order = @user.orders.build(product: Product.find(order_params[:product_id].to_i))
+			@order.save
+			render :nothing => true, :status => :created, :location => user_order_url(@user, @order)
+		rescue ActiveRecord::RecordNotFound
+			render :nothing => true, :status => :bad_request
+		end		
 	end
 
 	protected

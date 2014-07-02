@@ -70,5 +70,17 @@ describe OrdersController, :type => :controller do
 				expect(response.location).to match(/\/users\/1\/orders\/\d+/)
 			end
 		end
+
+		context 'order is invalid' do
+			before {
+				expect {
+					post :create, {:user_id => 1, :order => {:product_id => 10000}}
+					}.not_to change { Order.count }
+			}
+
+			it 'have http status 400' do
+				expect(response).to have_http_status(400)
+			end
+		end
 	end
 end
